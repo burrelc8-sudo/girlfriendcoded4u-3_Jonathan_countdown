@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LOVE Run Philly Half Marathon Mode Activated🏃🏾💨🫶🏽</title>
+
+  <style>
+    body {
+      background: linear-gradient(to bottom, #fdf6f0, #e6f2ff);
+      font-family: "Georgia", serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .app {
+      background: red;
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      width: 380px;
+    }
+
+    h1 { margin-bottom: 10px; }
+
+    .countdown {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+
+    .runner {
+      font-size: 40px;
+      margin-bottom: 10px;
+      animation: run 1s infinite alternate;
+    }
+
+    @keyframes run {
+      from { transform: translateX(-5px); }
+      to { transform: translateX(5px); }
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 10px;
+      background: #dceeff;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    button:hover {
+      background: #c4e3ff;
+    }
+
+    .progress-container {
+      margin-top: 15px;
+      background: #f1f1f1;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 15px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #7ec8a5;
+      transition: width 0.5s ease;
+    }
+
+    .message {
+      margin-top: 10px;
+      font-size: 14px;
+      min-height: 20px;
+    }
+
+    .secret {
+      margin-top: 15px;
+      display: none;
+      background: #ffe4e1;
+      padding: 10px;
+      border-radius: 12px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+    <h1> LOVE Run Philly Half Marathon Mode Activated</h1>
+    <div class="runner">🏁🏃🏾💨🫶🏽</div>
+
+    <div class="countdown" id="timer"></div>
+
+    <!-- Log Run -->
+    <button onclick="logRun()">Log Today’s Run</button>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Encouragement -->
+    <button onclick="sendEncouragement()">Send Encouragement 💌</button>
+    <div class="message" id="encouragementMessage"></div>
+
+    <!-- Secret Race Day Message -->
+    <div class="secret" id="raceSecret">
+      🏆 Race Day Surprise: See you at the finish line. 🏁 I am so unbelievably proud of you. Celebration mode activated.
+    </div>
+
+  </div>
+
+  <script>
+    const raceDate = new Date("March 29, 2026 07:00:00").getTime();
+    const timer = document.getElementById("timer");
+
+    let progress = 0;
+
+    // Countdown
+    setInterval(function() {
+      const now = new Date().getTime();
+      const distance = raceDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+      timer.innerHTML = days + " days " + hours + " hrs until race day";
+
+      if (distance <= 0) {
+        document.getElementById("raceSecret").style.display = "block";
+      }
+
+    }, 1000);
+
+    // Log Run
+    function logRun() {
+      if (progress < 100) {
+        progress += 10;
+        document.getElementById("progressBar").style.width = progress + "%";
+      }
+    }
+
+    // Encouragement Messages
+    const messages = [
+      "You’re stronger than you think.",
+      "Your effort deserves cuddles.",
+      "Future marathon finisher energy.",
+      "Your endurance deserves a pho celebration.",
+      "Remember your HIM.",
+      "KILLIN IT.",
+      "Your discipline is inspiring.",
+      "Every step is popcorn-worthy. Can’t wait to celebrate after the race!",
+      "You are a trackstar.",
+      "Running toward the finish line like we run toward pho on a Friday night.", 
+      "I believe in you completely."
+    ];
+
+    function sendEncouragement() {
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      document.getElementById("encouragementMessage").innerText = messages[randomIndex];
+    }
+
+  </script>
+
+</body>
+</html>
